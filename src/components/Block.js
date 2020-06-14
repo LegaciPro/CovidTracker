@@ -14,7 +14,6 @@ border
 borderWidth
 borderColor
 color => is background color of view
-.... your can custom if you want
 
 */
 

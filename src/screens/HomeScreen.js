@@ -11,6 +11,7 @@ import Feather from "react-native-vector-icons/Feather";
 import { useNavigation } from "@react-navigation/native";
 import { Block, Button, TextView } from "../components";
 import { Colors } from "../styles/color";
+import { StackView } from "@react-navigation/stack";
 
 const W = Dimensions.get("window").width;
 
@@ -46,6 +47,7 @@ const ItemDot = ({ color1, color2, num, title }) => {
 };
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
   return (
     <ScrollView style={{ flex: 1 }}>
       <Block block color="#fafafa">
@@ -91,27 +93,35 @@ const HomeScreen = () => {
             padding={10}
             shadow
             style={{ marginTop: 10 }}
-            direction="row"
           >
-            <ItemDot
-              color1={Colors.orange_tint}
-              color2={Colors.orange}
-              num={1046}
-              title={"Infected"}
-            />
-            <ItemDot
-              color1={Colors.red_tint}
-              color2={Colors.red}
-              num={87}
-              title={"Deaths"}
-            />
+            <View
+              style={{
+                flexDirection: "row",
+              }}
+            >
+              <ItemDot
+                color1={Colors.orange_tint}
+                color2={Colors.orange}
+                num={1046}
+                title={"Infected"}
+              />
+              <ItemDot
+                color1={Colors.red_tint}
+                color2={Colors.red}
+                num={87}
+                title={"Deaths"}
+              />
 
-            <ItemDot
-              color1={Colors.green_tint}
-              color2={Colors.green}
-              num={46}
-              title={"Recovered"}
-            />
+              <ItemDot
+                color1={Colors.green_tint}
+                color2={Colors.green}
+                num={46}
+                title={"Recovered*"}
+              />
+            </View>
+            <TextView size={8} style={{ marginTop: 8, textAlign: "right" }}>
+              *Not all recoveries reported
+            </TextView>
           </Block>
           <Block style={{ marginTop: 20 }}>
             <Block direction="row" justifyContent="space-between">
@@ -132,6 +142,8 @@ const HomeScreen = () => {
     </ScrollView>
   );
 };
+
+export default HomeScreen;
 
 const styles = StyleSheet.create({
   img: {
@@ -168,5 +180,3 @@ const styles = StyleSheet.create({
     padding: 15,
   },
 });
-
-export default HomeScreen;
